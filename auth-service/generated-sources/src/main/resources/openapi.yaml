@@ -1,0 +1,80 @@
+openapi: 3.0.1
+info:
+  title: Authentication Service
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /register:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        "201":
+          description: User registered
+      summary: Register a new user
+      x-content-type: application/json
+      x-accepts: application/json
+  /login:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+          description: Token generated
+      summary: Login and get token
+      x-content-type: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    User:
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        role:
+          enum:
+          - STUDENT
+          - ADMIN
+          type: string
+      type: object
+    RegisterRequest:
+      example:
+        password: password
+        username: username
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      type: object
+    LoginRequest:
+      example:
+        password: password
+        username: username
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      type: object
+    LoginResponse:
+      example:
+        token: token
+      properties:
+        token:
+          type: string
+      type: object
