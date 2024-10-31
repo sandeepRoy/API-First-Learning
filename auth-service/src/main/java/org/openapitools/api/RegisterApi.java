@@ -66,7 +66,7 @@ public interface RegisterApi {
         consumes = { "application/json" }
     )
     
-    default ResponseEntity<User> register(
+    default ResponseEntity<String> register(
         @Parameter(name = "RegisterRequest", description = "", required = true) @Valid @RequestBody RegisterRequest registerRequest
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);

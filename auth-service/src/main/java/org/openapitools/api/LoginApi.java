@@ -66,20 +66,9 @@ public interface LoginApi {
         consumes = { "application/json" }
     )
     
-    default ResponseEntity<LoginResponse> loginPost(
-        @Parameter(name = "LoginRequest", description = "", required = true) @Valid @RequestBody LoginRequest loginRequest
+    default ResponseEntity<LoginResponse> login(
+        @Parameter(name = "LoginRequest", description = "", required = true) @RequestBody LoginRequest loginRequest
     ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"token\" : \"token\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
     }
-
 }

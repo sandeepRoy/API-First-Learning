@@ -26,7 +26,7 @@ public class RegisterRequest {
 
   private String password;
 
-  private User.RoleEnum role;
+  private Role role;
 
   public RegisterRequest username(String username) {
     this.username = username;
@@ -81,11 +81,11 @@ public class RegisterRequest {
         Objects.equals(this.password, registerRequest.password);
   }
 
-  public User.RoleEnum getRole() {
+  public Role getRole() {
     return role;
   }
 
-  public void setRole(User.RoleEnum role) {
+  public void setRole(Role role) {
     this.role = role;
   }
 
